@@ -51,6 +51,7 @@ namespace InventoryAPI.Controllers
             var updatedCustomer = await _customerService.Update(id, updateCustomerRequestDTO);
             return Ok(updatedCustomer);
         }
+
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
