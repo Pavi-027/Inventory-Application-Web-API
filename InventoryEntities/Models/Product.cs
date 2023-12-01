@@ -24,10 +24,6 @@ namespace InventoryEntities.Models
         [Required]
         public string? Description { get; set; }
 
-        [Display(Name = "Product Image")]
-        [ValidateNever]
-        public string? ProductImageURL { get; set; }
-
         [Required]
         public decimal Price { get; set; }
 

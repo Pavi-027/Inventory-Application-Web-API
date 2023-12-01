@@ -37,6 +37,6 @@ namespace InventoryEntities.Models
         public virtual Customer Customer { get; set; }
 
         [ValidateNever]
-        public ICollection<Product> Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }

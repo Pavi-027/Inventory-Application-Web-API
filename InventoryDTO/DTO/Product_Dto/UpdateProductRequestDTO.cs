@@ -11,7 +11,6 @@ namespace InventoryDTO.DTO.Product_Dto
     {
         public string ProductName { get; set; }
         public string Description { get; set; }
-        public string? ProductImageURL { get; set; }
         public decimal Price { get; set; }
         public decimal? Discount { get; set; }
         public int TotalQuantityOfProduct { get; set; }

@@ -15,6 +15,6 @@ namespace InventoryDTO.DTO.PurchaseOrder_Dto
         public decimal TotalCostOfPurchaseorder { get; set; }
         public decimal? PurchaseDiscount { get; set; }
         public int SupplierId { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }

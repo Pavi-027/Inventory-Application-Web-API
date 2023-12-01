@@ -205,9 +205,6 @@ namespace InventoryRepositories.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ProductImageURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

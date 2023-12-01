@@ -25,7 +25,6 @@ namespace InventoryServices.Services
                     ProductId = item.ProductId,
                     ProductName = item.ProductName,
                     Description = item.Description,
-                    ProductImageURL = item.ProductImageURL,
                     Price = item.Price,
                     Discount = item.Discount,
                     TotalQuantityOfProduct = item.TotalQuantityOfProduct,
@@ -37,14 +36,15 @@ namespace InventoryServices.Services
             return productDTO;
         }
 
-        public async Task<List<Product>> GetByIds(int[] ids) {
+        public async Task<IEnumerable<Product>> GetByIds(int[] ids)
+        {
             return (await _unitOfWork.Product.GetByIds(x => ids.Contains(x.ProductId), includeProperties: "Category")).ToList();
         }
 
         public async Task<ProductRequestDto> GetById(int id)
         {
             var product = await _unitOfWork.Product.GetById(x => x.ProductId == id, includeProperties: "Category");
-            
+
             if (product == null)
             {
                 return null;
@@ -54,7 +54,6 @@ namespace InventoryServices.Services
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
                 Description = product.Description,
-                ProductImageURL = product.ProductImageURL,
                 Price = product.Price,
                 Discount = product.Discount,
                 TotalQuantityOfProduct = product.TotalQuantityOfProduct,
@@ -70,7 +69,6 @@ namespace InventoryServices.Services
             {
                 ProductName = addProductDTO.ProductName,
                 Description = addProductDTO.Description,
-                ProductImageURL = addProductDTO.ProductImageURL,
                 Price = addProductDTO.Price,
                 Discount = addProductDTO.Discount,
                 TotalQuantityOfProduct = addProductDTO.TotalQuantityOfProduct,
@@ -110,7 +108,6 @@ namespace InventoryServices.Services
                 ProductId = id,
                 ProductName = updateProductRequestDTO.ProductName,
                 Description = updateProductRequestDTO.Description,
-                ProductImageURL = updateProductRequestDTO.ProductImageURL,
                 Price = updateProductRequestDTO.Price,
                 Discount = updateProductRequestDTO.Discount,
                 TotalQuantityOfProduct = updateProductRequestDTO.TotalQuantityOfProduct,
@@ -134,7 +131,6 @@ namespace InventoryServices.Services
             {
                 ProductName = productModel.ProductName,
                 Description = productModel.Description,
-                ProductImageURL = productModel.ProductImageURL,
                 Price = productModel.Price,
                 Discount = productModel.Discount,
                 TotalQuantityOfProduct = productModel.TotalQuantityOfProduct,
@@ -155,6 +151,6 @@ namespace InventoryServices.Services
             await _unitOfWork.Product.Delete(deleteProductById);
             _unitOfWork.save();
             return deleteProductById;
-        }        
+        }
     }
 }

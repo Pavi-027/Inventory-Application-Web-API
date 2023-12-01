@@ -10,7 +10,7 @@ using Microsoft.VisualBasic;
 
 namespace InventoryAPI.Controllers
 {
-    //[Authorize(Roles = "SalesPerson")]
+    [Authorize(Roles = "SalesPerson")]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase

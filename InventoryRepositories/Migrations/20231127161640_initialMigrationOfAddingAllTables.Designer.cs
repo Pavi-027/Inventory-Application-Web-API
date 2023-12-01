@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryRepositories.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20231016080413_ApplicationUsers")]
-    partial class ApplicationUsers
+    [Migration("20231127161640_initialMigrationOfAddingAllTables")]
+    partial class initialMigrationOfAddingAllTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,9 +207,6 @@ namespace InventoryRepositories.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductImageURL")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()

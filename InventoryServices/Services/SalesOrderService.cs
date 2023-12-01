@@ -13,7 +13,7 @@ namespace InventoryServices.Services
         private readonly IProductService _productService;
         public SalesOrderService(IUnitOfWork unitOfWork, IProductService productService)
         {
-            _unitOfWork = unitOfWork;            
+            _unitOfWork = unitOfWork;
             _productService = productService;
         }
 
@@ -72,16 +72,19 @@ namespace InventoryServices.Services
                 QuantityForSale = addSalesOrderRequestDTO.QuantityForSale,
                 TotalCostOfSalesOrder = addSalesOrderRequestDTO.TotalCostOfSalesOrder,
                 SalesDiscount = addSalesOrderRequestDTO.SalesDiscount,
-                CustomerId = addSalesOrderRequestDTO.CustomerId                
+                CustomerId = addSalesOrderRequestDTO.CustomerId
             };
 
             /*IEnumerable<ProductDTO> products = await _productService.GetAll();
 
             int[] productId = products.Select(p => p.ProductId).ToArray();*/
-            
+
             var existingProduct = await _productService.GetByIds(addSalesOrderRequestDTO.Products);
-            
+
             salesOrder.Products = existingProduct;
+
+            /*// Calculate total cost based on the prices of selected products
+            salesOrder.TotalCostOfSalesOrder = CalculateTotalCost(existingProduct);*/
 
             //Use Model to Create Region
             salesOrder = await _unitOfWork.SalesOrder.Add(salesOrder);
@@ -99,6 +102,12 @@ namespace InventoryServices.Services
             };
             return salesOrderDTO;
         }
+
+        // Helper method to calculate the total cost based on product prices
+        /*private decimal CalculateTotalCost(IEnumerable<Product> products)
+        {
+            return products.Sum(product => product.Price);
+        }*/
 
         public async Task<SalesOrder> DeleteById(int id)
         {

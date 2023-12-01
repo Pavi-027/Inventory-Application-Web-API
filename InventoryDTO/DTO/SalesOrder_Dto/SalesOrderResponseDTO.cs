@@ -15,6 +15,6 @@ namespace InventoryDTO.DTO.SalesOrder_Dto
         public decimal TotalCostOfSalesOrder { get; set; }
         public decimal? SalesDiscount { get; set; }
         public int CustomerId { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }
